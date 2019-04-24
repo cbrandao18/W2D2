@@ -72,7 +72,6 @@ class Board
         self[end_pos]= self[start_pos]
         #set startpos to nil
         self[start_pos]= nil
-
     end
 
     private
