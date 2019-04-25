@@ -35,8 +35,6 @@ class Display
         p @board[[3,0]].valid_moves
         print "Kings available moves:"
         p @board[[4,0]].valid_moves
-
-        
     end
 
 end
