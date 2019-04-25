@@ -1,5 +1,5 @@
+require "byebug"
 class Pawn < Piece
-
 
     def symbol
         " P ".colorize(color)
@@ -11,7 +11,7 @@ class Pawn < Piece
         forward_steps + side_attacks
     end
 
-    private
+    #private
 
     def at_start_row?
        x,y = pos
@@ -56,26 +56,35 @@ class Pawn < Piece
                 fwdsteps << newpos
             end
         end
+
         #remove moves in fwsteps that aren't possible because a piece is already there
-        
         fwdsteps.each do |moves|
-            fwdsteps.delete(move) if !board[moves].is_a?(NullPiece)
+            fwdsteps.delete(moves) if !board[moves].is_a?(NullPiece) || !board.valid_pos?(moves)
         end
         fwdsteps
     end
 
     def side_attacks
+        # debugger
         x,y =pos
         side_attacks_arr =[[x+1,y+1],[x+1,y-1]] if forward_dir ==1
         side_attacks_arr = [[x-1,y+1],[x-1,y-1]] if forward_dir == -1
+        result = []
         side_attacks_arr.each do |move|
-            #only return possible moves that are on the board, empty, and attacks the opposite player
-            if !board.valid_pos?(move) || board[move].is_a?(NullPiece) || board[move].color == color
-                side_attacks_arr.delete(move)
+
+            if !board.valid_pos?(move)
+                next
             end
-            
+            if board[move].is_a?(NullPiece)
+                next
+            end
+            if board[move].color == color
+                next
+            end
+            result << move
         end
-        side_attacks_arr
+
+        result
     end
 
     

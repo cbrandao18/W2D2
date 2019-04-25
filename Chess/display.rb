@@ -27,9 +27,16 @@ class Display
     def debug_output
         print "Rooks available moves:"
         p @board[[0,0]].valid_moves
-        puts 
         print "Pawns available moves:"
         p @board[[1,0]].valid_moves
+        print "Bishops available moves:"
+        p @board[[2,0]].valid_moves
+        print "Queens available moves:"
+        p @board[[3,0]].valid_moves
+        print "Kings available moves:"
+        p @board[[4,0]].valid_moves
+
+        
     end
 
 end

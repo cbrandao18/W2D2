@@ -91,7 +91,7 @@ class Board
         end
 
         #check if piece can move to the end_pos. If not, raise exception,
-        if self[start_pos].moves.include?(end_pos)
+        if !self[start_pos].moves.include?(end_pos)
             raise WrongMovePath
         end
 
