@@ -9,12 +9,12 @@ class Board
 
         #Rook/Bishop/Queen & Knight/King
         @rows[0].each.with_index do |el, i|
-            @rows[0][i] = Piece.new
+            @rows[0][i] = Piece.new(:purple, self, [0, i])
         end
 
         #pawns
         @rows[1].each.with_index do |el, i|
-           @rows[1][i] = Piece.new
+           @rows[1][i] = Piece.new(:purple, self, [1, i])
         end
         
         # Everything in between here is 'nil' but will be filled in with a 
@@ -22,11 +22,11 @@ class Board
 
         #pawns
         @rows[6].each.with_index do |el, i|
-            @rows[6][i] = Piece.new
+            @rows[6][i] = Piece.new(:pink, self, [6, i])
         end
         #Rook/Bishop/Queen & Knight/King
         @rows[7].each.with_index do |el, i|
-            @rows[7][i] = Piece.new
+            @rows[7][i] = Piece.new(:pink, self, [7, i])
         end
     end
 
@@ -72,6 +72,11 @@ class Board
         self[end_pos]= self[start_pos]
         #set startpos to nil
         self[start_pos]= nil
+    end
+
+    def valid_pos?(pos)
+        x, y = pos
+        x.between?(0,7) && y.between?(0,7)
     end
 
     private

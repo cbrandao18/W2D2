@@ -99,7 +99,8 @@ class Cursor
     x,y =self.cursor_pos
     x+= diff[0]
     y+= diff[1]
-    if x.between?(0,7) && y.between?(0,7) # checking if it is a position on the board.
+    new_pos = [x,y]
+    if self.board.valid_pos(new_pos)# checking if it is a position on the board.
       self.cursor_pos = x,y
     end
   end
