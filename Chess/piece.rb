@@ -8,8 +8,22 @@ class Piece
         @pos = pos
     end
 
+    # Duplicate the Board and perform the move
+    # Look to see if the player is in check after the move (Board#in_check?)
+    def move_into_check?(end_pos)
+        duped = @board.dup 
+        duped.move_piece(@pos,end_pos)
+        duped.in_check?(@color)
+    end
+
+    #rescue the exceptions in here - WrongMovePath or NullPieceError
     def valid_moves
-        
+        valid_moves_arr = []
+        self.moves.each do |move|
+            #rescue here
+           valid_moves_arr << move if !move_into_check?(move)
+        end
+        valid_moves_arr 
     end
 
     def to_s
@@ -26,10 +40,6 @@ class Piece
 
     def symbol
 
-    end
-
-    def move_into_check?(end_pos)
-        
     end
     
 end

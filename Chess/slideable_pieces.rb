@@ -13,7 +13,7 @@ class Bishop < Piece
     end
 end
 
-class Rook
+class Rook < Piece
     include Slideable
 
     def symbol
@@ -26,7 +26,7 @@ class Rook
 
 end
 
-class Queen
+class Queen < Piece
     include Slideable
 
     def symbol
